@@ -22,7 +22,6 @@ http.createServer((req,res) => {
 
   const {name, url, del} = URL.parse(req.url, true).query;
 
-
   if(!name || !url){
     return res.end(JSON.stringify(data));
   };
@@ -35,8 +34,14 @@ http.createServer((req,res) => {
 
   }
 
+  data.urls.push({
+    name,
+    url,
+  });
 
-  return res.end('create');
+  return writeFile((message) => {
+    res.end(message);
+  });
 
 
 }).listen(3000, () => console.log('Api is running'));
