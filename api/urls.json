@@ -7,6 +7,14 @@
     {
       "name": "Google",
       "url": "http://www.google.com.br"
+    },
+    {
+      "name": "Nariz",
+      "url": "nariz.com.br"
+    },
+    {
+      "name": "UOL",
+      "url": "http://uol.com.br"
     }
   ]
 }

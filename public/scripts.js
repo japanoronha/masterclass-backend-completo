@@ -6,10 +6,14 @@ async function load(){
   const res = await fetch("http://localhost:3000/")
     .then((data) => data.json());
 
-    
     res.urls.map(url => addElement(url));
+}
 
-  
+async function add({name,url}){
+  const res = await fetch(`http://localhost:3000?name=${name}&url=${url}`)
+    .then((data) => data.json());
+
+    console.log(res);
 }
 
 load();
@@ -53,6 +57,9 @@ form.addEventListener("submit", (event) => {
         return alert("Digite a url da maneira correta")
 
     addElement({ name, url })
+
+    add({name, url});
+
 
     input.value = ""
 })
