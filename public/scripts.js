@@ -16,6 +16,13 @@ async function add({name,url}){
     console.log(res);
 }
 
+async function del({name,url}){
+  const res = await fetch(`http://localhost:3000?name=${name}&url=${url}&del=1`)
+    .then((data) => data.json());
+
+    console.log(res);
+}
+
 load();
 
 function addElement({ name, url }) {
@@ -28,7 +35,10 @@ function addElement({ name, url }) {
     a.target = "_blank"
 
     trash.innerHTML = "x"
-    trash.onclick = () => removeElement(trash)
+    trash.onclick = () => {
+      del({name,url});
+      removeElement(trash);
+    }
 
     li.append(a)
     li.append(trash)
@@ -36,8 +46,9 @@ function addElement({ name, url }) {
 }
 
 function removeElement(el) {
-    if (confirm('Tem certeza que deseja deletar?'))
-        el.parentNode.remove()
+  
+  if (confirm('Tem certeza que deseja deletar?'))
+      el.parentNode.remove()
 }
 
 form.addEventListener("submit", (event) => {
